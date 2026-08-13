@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATCHING | عطورك التي تُشبهك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --baby-blue:#bfe3ef;
+    --baby-blue-soft:#e4f4f8;
+    --baby-blue-deep:#79b9d1;
+    --ink:#173b47;
+    --ink-soft:#4c7482;
+    --line:rgba(23,59,71,.12);
+    --glass:rgba(255,255,255,.55);
+    --shadow: 0 20px 60px rgba(23,59,71,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Tajawal', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:'Cairo', sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--baby-blue-deep);color:#fff;}
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    background:var(--ink);
+    color:var(--baby-blue-soft);
+    text-align:center;
+    font-size:.8rem;
+    letter-spacing:.03em;
+    padding:9px 12px;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1240px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;
+  }
+  .brand{
+    font-size:1.55rem;font-weight:900;letter-spacing:.12em;
+    color:var(--ink);
+  }
+  .brand span{color:var(--baby-blue-deep);}
+  nav ul{list-style:none;display:flex;gap:34px;}
+  nav a{
+    font-size:.95rem;font-weight:500;color:var(--ink-soft);
+    position:relative;padding:4px 0;transition:color .25s;
+  }
+  nav a::after{
+    content:"";position:absolute;right:0;bottom:-3px;width:0;height:2px;
+    background:var(--baby-blue-deep);transition:width .3s ease;
+  }
+  nav a:hover{color:var(--ink);}
+  nav a:hover::after{width:100%;}
+  .head-icons{display:flex;align-items:center;gap:20px;}
+  .icon-btn{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--baby-blue-soft);color:var(--ink);
+    cursor:pointer;transition:.25s;border:1px solid transparent;
+  }
+  .icon-btn:hover{background:var(--baby-blue);border-color:var(--baby-blue-deep);}
+  .burger{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;align-items:center;
+    background:
+      radial-gradient(60% 55% at 78% 18%, #ffffff 0%, transparent 60%),
+      radial-gradient(70% 60% at 15% 85%, var(--baby-blue) 0%, transparent 65%),
+      linear-gradient(160deg, var(--baby-blue-soft) 0%, #ffffff 55%, var(--baby-blue-soft) 100%);
+    overflow:hidden;
+  }
+  .blob{
+    position:absolute;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), var(--baby-blue) 70%);
+    filter:blur(2px);
+    opacity:.7;
+    animation:float 9s ease-in-out infinite;
+  }
+  .blob.b1{width:340px;height:340px;top:-80px;left:-90px;animation-delay:0s;}
+  .blob.b2{width:220px;height:220px;bottom:-60px;right:8%;animation-delay:2s;
+    background:radial-gradient(circle at 30% 30%, var(--baby-blue-deep), transparent 70%);opacity:.35;}
+  .blob.b3{width:140px;height:140px;top:20%;right:20%;animation-delay:4s;opacity:.5;}
+  @keyframes float{
+    0%,100%{transform:translateY(0) translateX(0);}
+    50%{transform:translateY(-26px) translateX(14px);}
+  }
+
+  .hero-wrap{
+    position:relative;z-index:2;
+    max-width:1240px;margin:0 auto;
+    width:100%;
+    display:grid;grid-template-columns:1.05fr 1fr;
+    gap:40px;align-items:center;
+    padding:60px 28px;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--white);border:1px solid var(--line);
+    padding:7px 16px;border-radius:999px;
+    font-size:.8rem;color:var(--ink-soft);font-weight:500;
+    box-shadow:var(--shadow);margin-bottom:22px;
+  }
+  .hero-eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--baby-blue-deep);display:inline-block;}
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.1rem);
+    line-height:1.08;font-weight:900;color:var(--ink);
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(90deg, var(--baby-blue-deep), #4a97b2);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{
+    font-size:1.08rem;color:var(--ink-soft);max-width:480px;
+    line-height:1.9;margin-bottom:34px;
+  }
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 32px;border-radius:999px;
+    font-weight:700;font-size:.98rem;cursor:pointer;
+    border:1px solid transparent;transition:.3s;
+  }
+  .btn-primary{
+    background:var(--ink);color:#fff;
+    box-shadow:0 14px 30px rgba(23,59,71,.25);
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 36px rgba(23,59,71,.32);}
+  .btn-ghost{
+    background:var(--white);color:var(--ink);border-color:var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--baby-blue-deep);background:var(--baby-blue-soft);}
+
+  .hero-stats{display:flex;gap:34px;margin-top:46px;}
+  .hero-stats div{border-right:1px solid var(--line);padding-right:20px;}
+  .hero-stats div:first-child{padding-right:0;border:none;}
+  .hero-stats b{display:block;font-family:'Cairo';font-size:1.5rem;color:var(--ink);}
+  .hero-stats span{font-size:.8rem;color:var(--ink-soft);}
+
+  /* signature bottle illustration */
+  .bottle-stage{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    height:520px;
+  }
+  .stage-ring{
+    position:absolute;width:400px;height:400px;border-radius:50%;
+    background:var(--glass);
+    backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.8);
+    box-shadow: inset 0 0 60px rgba(255,255,255,.6), 0 30px 80px rgba(23,59,71,.15);
+  }
+  .stage-ring::before{
+    content:"";position:absolute;inset:-1px;border-radius:50%;
+    border:1px dashed rgba(23,59,71,.18);
+    animation:spin 40s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .bottle-svg{position:relative;z-index:2;width:230px;filter:drop-shadow(0 30px 40px rgba(23,59,71,.25));animation:bob 5s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
+  .float-chip{
+    position:absolute;background:#fff;border:1px solid var(--line);
+    border-radius:16px;padding:10px 16px;box-shadow:var(--shadow);
+    display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;
+    animation:float 7s ease-in-out infinite;
+  }
+  .chip-a{top:10%;right:2%;animation-delay:.5s;}
+  .chip-b{bottom:12%;left:0%;animation-delay:1.5s;}
+  .chip-dot{width:8px;height:8px;border-radius:50%;background:var(--baby-blue-deep);}
+
+  /* ---------- marquee ---------- */
+  .marquee{
+    background:var(--ink);color:var(--baby-blue-soft);
+    overflow:hidden;white-space:nowrap;padding:14px 0;
+  }
+  .marquee-track{display:inline-block;animation:scroll 26s linear infinite;font-family:'Cairo';font-weight:700;letter-spacing:.05em;}
+  .marquee-track span{margin:0 34px;font-size:.95rem;opacity:.9;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- section shell ---------- */
+  section{padding:100px 28px;}
+  .container{max-width:1240px;margin:0 auto;}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:50px;gap:20px;flex-wrap:wrap;}
+  .sec-eyebrow{color:var(--baby-blue-deep);font-weight:700;font-size:.85rem;letter-spacing:.08em;margin-bottom:10px;display:block;}
+  .sec-head h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;}
+  .sec-head p{color:var(--ink-soft);max-width:420px;line-height:1.8;}
+
+  /* ---------- product grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:26px;
+    overflow:hidden;transition:.4s;position:relative;
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent;}
+  .card-media{
+    height:250px;position:relative;
+    background:linear-gradient(150deg, var(--baby-blue-soft), #fff 70%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-media svg{width:100px;filter:drop-shadow(0 18px 20px rgba(23,59,71,.18));transition:.5s;}
+  .card:hover .card-media svg{transform:translateY(-6px) scale(1.04);}
+  .badge{
+    position:absolute;top:14px;right:14px;background:var(--ink);color:#fff;
+    font-size:.72rem;font-weight:700;padding:5px 12px;border-radius:999px;
+  }
+  .badge.alt{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .card-body{padding:20px 22px 24px;}
+  .card-cat{font-size:.75rem;color:var(--baby-blue-deep);font-weight:700;margin-bottom:6px;display:block;}
+  .card-body h3{font-family:'Cairo';font-size:1.08rem;font-weight:700;margin-bottom:8px;}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:16px;}
+  .price{font-family:'Cairo';font-weight:800;font-size:1.1rem;}
+  .price small{font-weight:500;font-size:.8rem;color:var(--ink-soft);text-decoration:line-through;margin-left:6px;}
+  .add-btn{
+    width:40px;height:40px;border-radius:50%;background:var(--baby-blue-soft);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s;border:1px solid transparent;
+  }
+  .add-btn:hover{background:var(--ink);color:#fff;}
+
+  /* ---------- story split ---------- */
+  .story{
+    background:linear-gradient(180deg, #fff, var(--baby-blue-soft));
+  }
+  .story-wrap{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+  .story-art{
+    position:relative;height:420px;border-radius:32px;
+    background:linear-gradient(150deg, var(--baby-blue), var(--baby-blue-soft));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow);
+  }
+  .story-art svg{width:60%;}
+  .story-txt span.sec-eyebrow{margin-bottom:14px;}
+  .story-txt h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;margin-bottom:20px;line-height:1.3;}
+  .story-txt p{color:var(--ink-soft);line-height:2;margin-bottom:26px;}
+  .story-list{display:flex;flex-direction:column;gap:16px;margin-bottom:30px;}
+  .story-list li{display:flex;align-items:center;gap:12px;font-weight:600;}
+  .story-list i{
+    width:30px;height:30px;border-radius:50%;background:var(--baby-blue-soft);
+    display:flex;align-items:center;justify-content:center;color:var(--baby-blue-deep);font-style:normal;font-weight:800;font-size:.85rem;
+  }
+
+  /* ---------- testimonial band ---------- */
+  .band{
+    background:var(--ink);color:#fff;text-align:center;
+  }
+  .band .sec-eyebrow{color:var(--baby-blue);}
+  .band h2{color:#fff;max-width:760px;margin:0 auto 40px;font-weight:700;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.7;}
+  .stars{color:var(--baby-blue);font-size:1.3rem;letter-spacing:4px;margin-bottom:24px;}
+  .band-name{font-family:'Cairo';font-weight:700;}
+  .band-role{font-size:.85rem;color:rgba(255,255,255,.55);}
+
+  /* ---------- newsletter ---------- */
+  .news{
+    background:var(--baby-blue-soft);
+    border-radius:36px;max-width:1240px;margin:0 auto;
+    padding:60px 50px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;
+  }
+  .news h3{font-size:1.7rem;font-weight:800;margin-bottom:8px;}
+  .news p{color:var(--ink-soft);}
+  .news-form{display:flex;gap:10px;}
+  .news-form input{
+    padding:14px 20px;border-radius:999px;border:1px solid var(--line);
+    min-width:260px;font-family:'Tajawal';background:#fff;
+  }
+  .news-form input:focus{outline:2px solid var(--baby-blue-deep);}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:rgba(255,255,255,.7);padding:70px 28px 26px;}
+  .foot-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.12);}
+  .foot-grid h4{color:#fff;font-family:'Cairo';margin-bottom:18px;font-size:1rem;}
+  .foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:.9rem;}
+  .foot-grid ul a:hover{color:var(--baby-blue);}
+  .foot-brand p{margin-top:14px;line-height:1.9;font-size:.9rem;max-width:280px;}
+  .foot-bottom{max-width:1240px;margin:0 auto;padding-top:24px;display:flex;justify-content:space-between;font-size:.82rem;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:980px){
+    nav ul{display:none;}
+    .hero-wrap{grid-template-columns:1fr;text-align:center;}
+    .hero p{margin:0 auto 34px;}
+    .hero-cta{justify-content:center;}
+    .hero-stats{justify-content:center;}
+    .hero-stats div{border:none;padding-right:0;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .story-wrap{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .news{flex-direction:column;text-align:center;}
+    .foot-grid{grid-template-columns:1fr;}
+    .bottle-stage{height:380px;}
+    .stage-ring{width:280px;height:280px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">شحن مجاني للطلبات فوق 1500 جنيه &nbsp;•&nbsp; إرجاع مجاني خلال 14 يوم</div>
+
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">MATCHING<span>.</span></div>
+      <nav>
+        <ul>
+          <li><a href="#collections">المجموعات</a></li>
+          <li><a href="#best">الأكثر مبيعًا</a></li>
+          <li><a href="#story">قصتنا</a></li>
+          <li><a href="#news">تواصل معنا</a></li>
+        </ul>
+      </nav>
+      <div class="head-icons">
+        <div class="icon-btn" id="searchBtn" role="button" tabindex="0" aria-label="بحث">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <div class="icon-btn" id="accountBtn" role="button" tabindex="0" aria-label="الحساب">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4.5 5-6 8-6s6.5 1.5 8 6"/></svg>
+        </div>
+        <div class="icon-btn" id="cartBtn" style="position:relative;" role="button" tabindex="0" aria-label="السلة">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+          <span id="cartCount" style="position:absolute;top:-6px;left:-6px;background:var(--ink);color:#fff;font-size:.62rem;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- search overlay -->
+    <div id="searchPanel" style="display:none;border-top:1px solid var(--line);background:#fff;">
+      <div class="nav-wrap" style="padding:16px 28px;">
+        <form id="searchForm" style="display:flex;gap:10px;width:100%;" onsubmit="return false;">
+          <input id="searchInput" type="text" placeholder="ابحثي عن عطر..." style="flex:1;padding:12px 18px;border-radius:999px;border:1px solid var(--line);font-family:'Tajawal';background:var(--baby-blue-soft);">
+          <button type="submit" class="btn btn-primary" style="padding:12px 26px;">بحث</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- account panel -->
+    <div id="accountPanel" style="display:none;border-top:1px solid var(--line);background:#fff;">
+      <div class="nav-wrap" style="padding:22px 28px;flex-direction:column;align-items:stretch;gap:14px;max-width:360px;margin:0 auto;">
+        <h3 style="font-family:'Cairo';font-size:1.05rem;">تسجيل الدخول</h3>
+        <input type="email" placeholder="البريد الإلكتروني" style="padding:12px 16px;border-radius:12px;border:1px solid var(--line);font-family:'Tajawal';">
+        <input type="password" placeholder="كلمة المرور" style="padding:12px 16px;border-radius:12px;border:1px solid var(--line);font-family:'Tajawal';">
+        <button id="loginSubmit" class="btn btn-primary" style="justify-content:center;">دخول</button>
+        <span style="font-size:.82rem;color:var(--ink-soft);text-align:center;">ليس لديكِ حساب؟ <a href="#" style="color:var(--baby-blue-deep);font-weight:700;">إنشاء حساب جديد</a></span>
+      </div>
+    </div>
+  </header>
+
+  <div id="toast" style="position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--ink);color:#fff;padding:14px 26px;border-radius:999px;font-weight:600;font-size:.9rem;z-index:999;transition:transform .35s ease;box-shadow:0 20px 40px rgba(0,0,0,.25);"></div>
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <div class="hero-wrap">
+      <div>
+        <div class="hero-eyebrow"><i></i> إطلاق مجموعة الصيف الجديدة</div>
+        <h1>عطرك <em>يُطابق</em><br>شخصيتك تمامًا</h1>
+        <p>في MATCHING، كل عطر يُصمَّم ليُلاقي مزاجك اليومي — نفحات هادئة، ثبات طويل، وهوية تحملها أينما ذهبتِ.</p>
+        <div class="hero-cta">
+          <a href="#collections" class="btn btn-primary">تسوقي المجموعة</a>
+          <a href="#story" class="btn btn-ghost">اكتشفي القصة</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>+40</b><span>تركيبة عطرية</span></div>
+          <div><b>98%</b><span>رضا العميلات</span></div>
+          <div><b>14</b><span>يوم إرجاع مجاني</span></div>
+        </div>
+      </div>
+
+      <div class="bottle-stage">
+        <div class="stage-ring"></div>
+        <svg class="bottle-svg" viewBox="0 0 200 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#eaf7fb"/>
+              <stop offset="55%" stop-color="#bfe3ef"/>
+              <stop offset="100%" stop-color="#79b9d1"/>
+            </linearGradient>
+            <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#173b47"/>
+              <stop offset="100%" stop-color="#0e262e"/>
+            </linearGradient>
+          </defs>
+          <rect x="78" y="18" width="44" height="34" rx="6" fill="url(#cap)"/>
+          <rect x="90" y="4" width="20" height="20" rx="4" fill="#0e262e"/>
+          <path d="M60 60 Q60 50 72 50 H128 Q140 50 140 60 V90 Q160 110 160 150 V300 Q160 320 140 320 H60 Q40 320 40 300 V150 Q40 110 60 90 Z" fill="url(#glass)" stroke="#ffffff" stroke-width="2" opacity="0.95"/>
+          <rect x="55" y="150" width="90" height="150" rx="14" fill="#ffffff" opacity="0.55"/>
+          <text x="100" y="230" font-family="Cairo, sans-serif" font-size="17" font-weight="800" fill="#173b47" text-anchor="middle">MATCHING</text>
+          <line x1="70" y1="60" x2="70" y2="300" stroke="#ffffff" stroke-width="6" opacity="0.5" stroke-linecap="round"/>
+        </svg>
+        <div class="float-chip chip-a"><span class="chip-dot"></span> ثبات 12 ساعة</div>
+        <div class="float-chip chip-b"><span class="chip-dot"></span> خالٍ من الكحول القاسي</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>MATCHING</span><span>عطور نيش</span><span>MATCHING</span><span>تركيبات حصرية</span>
+      <span>MATCHING</span><span>ثبات يدوم</span><span>MATCHING</span><span>هدايا فاخرة</span>
+      <span>MATCHING</span><span>عطور نيش</span><span>MATCHING</span><span>تركيبات حصرية</span>
+      <span>MATCHING</span><span>ثبات يدوم</span><span>MATCHING</span><span>هدايا فاخرة</span>
+    </div>
+  </div>
+
+  <!-- COLLECTIONS -->
+  <section id="collections">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <span class="sec-eyebrow">مجموعتنا</span>
+          <h2>العطور الأكثر طلبًا هذا الموسم</h2>
+        </div>
+        <p>كل زجاجة تحمل توقيعًا عطريًا مختلفًا — من النفحات المائية المنعشة إلى الشرقية الدافئة.</p>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <div class="card-media">
+            <span class="badge">جديد</span>
+            <svg viewBox="0 0 100 160" width="90"><rect x="20" y="10" width="16" height="12" rx="3" fill="#173b47"/><path d="M14 26 Q14 22 20 22H36Q42 22 42 26V50Q54 62 54 78V140Q54 150 44 150H12Q2 150 2 140V78Q2 62 14 50Z" fill="#bfe3ef" stroke="#79b9d1" stroke-width="2"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-cat">مائي – نسائي</span>
+            <h3>أكوا بلوم</h3>
+            <div class="card-foot">
+              <span class="price">1,450 ج.م</span>
+              <div class="add-btn" data-name="أكوا بلوم"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-media">
+            <span class="badge alt">-20%</span>
+            <svg viewBox="0 0 100 160" width="90"><rect x="20" y="10" width="16" height="12" rx="3" fill="#173b47"/><path d="M14 26 Q14 22 20 22H36Q42 22 42 26V50Q54 62 54 78V140Q54 150 44 150H12Q2 150 2 140V78Q2 62 14 50Z" fill="#eaf7fb" stroke="#79b9d1" stroke-width="2"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-cat">شرقي – للجنسين</span>
+            <h3>مِسك أزرق</h3>
+            <div class="card-foot">
+              <span class="price">1,190 ج.م <small>1,520</small></span>
+              <div class="add-btn" data-name="مِسك أزرق"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-media">
+            <svg viewBox="0 0 100 160" width="90"><rect x="20" y="10" width="16" height="12" rx="3" fill="#173b47"/><path d="M14 26 Q14 22 20 22H36Q42 22 42 26V50Q54 62 54 78V140Q54 150 44 150H12Q2 150 2 140V78Q2 62 14 50Z" fill="#79b9d1" stroke="#173b47" stroke-width="2"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-cat">خشبي – رجالي</span>
+            <h3>سِدر نوكس</h3>
+            <div class="card-foot">
+              <span class="price">1,650 ج.م</span>
+              <div class="add-btn" data-name="سِدر نوكس"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-media">
+            <span class="badge">الأكثر مبيعًا</span>
+            <svg viewBox="0 0 100 160" width="90"><rect x="20" y="10" width="16" height="12" rx="3" fill="#173b47"/><path d="M14 26 Q14 22 20 22H36Q42 22 42 26V50Q54 62 54 78V140Q54 150 44 150H12Q2 150 2 140V78Q2 62 14 50Z" fill="#d8f0f6" stroke="#79b9d1" stroke-width="2"/></svg>
+          </div>
+          <div class="card-body">
+            <span class="card-cat">زهري – نسائي</span>
+            <h3>بيبي بلوسم</h3>
+            <div class="card-foot">
+              <span class="price">1,340 ج.م</span>
+              <div class="add-btn" data-name="بيبي بلوسم"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story" class="story">
+    <div class="container story-wrap">
+      <div class="story-art">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="90" fill="#ffffff" opacity="0.5"/>
+          <circle cx="100" cy="100" r="60" fill="#79b9d1" opacity="0.6"/>
+          <circle cx="100" cy="100" r="30" fill="#173b47"/>
+        </svg>
+      </div>
+      <div class="story-txt">
+        <span class="sec-eyebrow">من نحن</span>
+        <h2>عطر يُطابق شخصيتكِ، لا يُقلّدها</h2>
+        <p>MATCHING وُلدت من فكرة بسيطة: العطر امتداد لهويتكِ وليس مجرد رائحة. نختار خاماتنا من أعرق بيوت العطارة، ونصمم كل تركيبة لتُطابق مزاجًا أو لحظة بعينها.</p>
+        <ul class="story-list">
+          <li><i>✓</i> مكونات طبيعية معتمدة</li>
+          <li><i>✓</i> تصنيع وتعبئة يدوية</li>
+          <li><i>✓</i> عبوات قابلة لإعادة التعبئة</li>
+        </ul>
+        <a href="#news" class="btn btn-primary">اعرفي المزيد</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="band">
+    <div class="container">
+      <span class="sec-eyebrow">آراء العميلات</span>
+      <div class="stars">★★★★★</div>
+      <h2>"عطر بيبي بلوسم أصبح توقيعي الشخصي، أشمّه في كل مكان أدخله وأشعر أنه يعكسني تمامًا."</h2>
+      <div class="band-name">سارة الحربي</div>
+      <div class="band-role">عميلة منذ 2023</div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="news" style="padding-top:80px;padding-bottom:80px;">
+    <div class="news">
+      <div>
+        <h3>كوني أول من يعرف</h3>
+        <p>اشتركي ليصلك خصم 10% على أول طلب وإطلاقات العطور الجديدة.</p>
+      </div>
+      <form class="news-form" id="newsForm">
+        <input type="email" id="newsEmail" placeholder="بريدك الإلكتروني" required>
+        <button type="submit" class="btn btn-primary">اشتراك</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="color:#fff;">MATCHING<span style="color:var(--baby-blue);">.</span></div>
+        <p>عطور صُممت لتُطابق شخصيتك في كل لحظة. تسوقي من موقعنا واستمتعي بشحن سريع وخدمة عملاء متميزة.</p>
+      </div>
+      <div>
+        <h4>تسوق</h4>
+        <ul>
+          <li><a href="#">عطور نسائية</a></li>
+          <li><a href="#">عطور رجالية</a></li>
+          <li><a href="#">مجموعة الهدايا</a></li>
+          <li><a href="#">العروض</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>الشركة</h4>
+        <ul>
+          <li><a href="#">من نحن</a></li>
+          <li><a href="#">تواصلي معنا</a></li>
+          <li><a href="#">الوظائف</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>الدعم</h4>
+        <ul>
+          <li><a href="#">سياسة الإرجاع</a></li>
+          <li><a href="#">الشحن والتوصيل</a></li>
+          <li><a href="#">الأسئلة الشائعة</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 MATCHING. جميع الحقوق محفوظة.</span>
+      <span>صُنع بحب في السعودية</span>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- toast ----------
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>{
+        toast.style.transform = 'translateX(-50%) translateY(120%)';
+      }, 2200);
+    }
+
+    // ---------- cart ----------
+    let cartTotal = 0;
+    const cartCountEl = document.getElementById('cartCount');
+    document.querySelectorAll('.add-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        cartTotal++;
+        cartCountEl.textContent = cartTotal;
+        cartCountEl.animate([{transform:'scale(1.6)'},{transform:'scale(1)'}], {duration:300, easing:'ease-out'});
+        const name = btn.getAttribute('data-name') || 'المنتج';
+        showToast('تمت إضافة "' + name + '" إلى السلة');
+      });
+    });
+    document.getElementById('cartBtn').addEventListener('click', ()=>{
+      showToast(cartTotal > 0 ? ('لديكِ ' + cartTotal + ' منتج في السلة') : 'سلتكِ فارغة حاليًا');
+    });
+
+    // ---------- search / account panels (mutually exclusive) ----------
+    const searchPanel = document.getElementById('searchPanel');
+    const accountPanel = document.getElementById('accountPanel');
+    function togglePanel(panel, other){
+      const isOpen = panel.style.display === 'block';
+      other.style.display = 'none';
+      panel.style.display = isOpen ? 'none' : 'block';
+      if(!isOpen && panel === searchPanel){
+        setTimeout(()=>document.getElementById('searchInput').focus(), 50);
+      }
+    }
+    document.getElementById('searchBtn').addEventListener('click', ()=>togglePanel(searchPanel, accountPanel));
+    document.getElementById('accountBtn').addEventListener('click', ()=>togglePanel(accountPanel, searchPanel));
+
+    document.getElementById('searchForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const q = document.getElementById('searchInput').value.trim();
+      showToast(q ? ('جارِ البحث عن "' + q + '"') : 'اكتبي اسم العطر الذي تبحثين عنه');
+    });
+
+    document.getElementById('loginSubmit').addEventListener('click', (e)=>{
+      e.preventDefault();
+      showToast('تم إرسال بيانات الدخول');
+      accountPanel.style.display = 'none';
+    });
+
+    // ---------- newsletter ----------
+    document.getElementById('newsForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('newsEmail').value.trim();
+      if(email){
+        showToast('تم الاشتراك بنجاح، تحققي من بريدكِ');
+        document.getElementById('newsEmail').value = '';
+      }
+    });
+
+    // keyboard accessibility for icon buttons
+    document.querySelectorAll('[role="button"]').forEach(el=>{
+      el.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); el.click(); }
+      });
+    });
+  </script>
+
+</body>
+</html>
